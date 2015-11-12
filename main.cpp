@@ -40,8 +40,8 @@ int main(int argc, const char * argv[])
         
         const string P = "aba";
         const string T = "bbabaxababay";
-        string P_mult = "";      // for time tests of input size
-        string T_mult = "";
+        auto P_mult = "";      // for time tests of input size
+        auto T_mult = "";
 
         for (int k=0; k< inSize; ++k){
             P_mult += P;
@@ -56,7 +56,7 @@ int main(int argc, const char * argv[])
             //cout << startTime << endl;
             vector<int> matches = naiveMatch(P_mult,T_mult);
             //cout << clock() << endl;
-            double thisTime = double( clock() - startTime );
+            auto thisTime = double( clock() - startTime );
             if (thisTime < minTime)  minTime = thisTime;
         }
         times[i] = minTime;
