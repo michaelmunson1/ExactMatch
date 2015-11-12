@@ -30,43 +30,33 @@ vector<int> naiveMatch(string P_mult, string T_mult){
 
 int main(int argc, const char * argv[])
 {
-    
-    
-    const string P = "aba";
-    const string T = "bbabaxababay";
-    
-    string P_mult = "";      // for time tests of input size
-    string T_mult = "";
-    
-    clock_t startTime;
-    
     vector<double> times(4);
-    
-    double minTime;
-    double thisTime;
-    
-    vector<int> matches;
-    
     
     for(int i=0; i < 4; ++i){
         
         //cout << "i is " << i << endl;
         int inSize = (int) pow(10.0, (double) i);
         
+        
+        const string P = "aba";
+        const string T = "bbabaxababay";
+        string P_mult = "";      // for time tests of input size
+        string T_mult = "";
+
         for (int k=0; k< inSize; ++k){
             P_mult += P;
             T_mult += T;
         }
         
-        minTime = 9999999.9;
+        double minTime = 9999999.9;
         for (int j=0; j < 5; ++j){
             //cout << "j is " << j << endl;
             
-            startTime = clock();
+            clock_t startTime = clock();
             //cout << startTime << endl;
-            matches = naiveMatch(P_mult,T_mult);
+            vector<int> matches = naiveMatch(P_mult,T_mult);
             //cout << clock() << endl;
-            thisTime = double( clock() - startTime );
+            double thisTime = double( clock() - startTime );
             if (thisTime < minTime)  minTime = thisTime;
         }
         times[i] = minTime;
