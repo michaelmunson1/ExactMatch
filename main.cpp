@@ -10,8 +10,25 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#include <ctime>
+#include "ExactMatch.h"
 
 using namespace std;
+
+
+
+int main(int argc, const char * argv[])
+{
+    const string P = "aba";
+    const string T = "bbabaxababay";
+    
+    vector<int> times = timeMatchingAlgo(naiveMatch, P, T);
+    printTimes(times, 4);
+  
+    return 0;
+}
+
+
 
 vector<int> naiveMatch(string P_mult, string T_mult){
     vector<int> matches;
@@ -28,21 +45,19 @@ vector<int> naiveMatch(string P_mult, string T_mult){
 }
 
 
-int main(int argc, const char * argv[])
-{
-    vector<double> times(4);
+
+vector<int> timeMatchingAlgo(vector<int> (*algo)(string, string), string P, string T){
+    
+    vector<int> times {0,0,0,0};
     
     for(int i=0; i < 4; ++i){
         
         //cout << "i is " << i << endl;
         int inSize = (int) pow(10.0, (double) i);
         
+        string P_mult = "";      // for time tests of input size
+        string T_mult = "";
         
-        const string P = "aba";
-        const string T = "bbabaxababay";
-        auto P_mult = "";      // for time tests of input size
-        auto T_mult = "";
-
         for (int k=0; k< inSize; ++k){
             P_mult += P;
             T_mult += T;
@@ -53,19 +68,21 @@ int main(int argc, const char * argv[])
             //cout << "j is " << j << endl;
             
             clock_t startTime = clock();
-            //cout << startTime << endl;
-            vector<int> matches = naiveMatch(P_mult,T_mult);
-            //cout << clock() << endl;
-            auto thisTime = double( clock() - startTime );
+            
+            vector<int> matches = (*algo)(P_mult,T_mult);
+           
+            auto s = (double) (clock() - startTime ) /  CLOCKS_PER_SEC; // time in seconds
+            auto thisTime = (int) 1000000 * s;   //time in us
             if (thisTime < minTime)  minTime = thisTime;
         }
         times[i] = minTime;
-        
     }
-    
-    for(int i = 0; i < 4; ++i){
+    return times;
+}
+
+
+void printTimes(vector<int> times, int n){
+    for(int i = 0; i < n; ++i){
         cout << times[i] << endl;
     }
-    
-    return 0;
 }
