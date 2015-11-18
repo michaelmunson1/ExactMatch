@@ -16,6 +16,9 @@ using namespace std;
 
 vector<int> naiveMatch(string, string);
 vector<int> timeMatchingAlgo(vector<int> (*algo)(string,string), string, string);
-void printTimes(vector<int> times, int n);
+vector<int> simplestLinearMatch(string, string);
+vector<int> zPre(string P);
+vector<int> findZMatches(string, int, int, vector<int>);
+void printTimes(vector<int>, int);
 
 #endif /* ExactMatch_h */

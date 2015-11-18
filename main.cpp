@@ -29,6 +29,34 @@ int main(int argc, const char * argv[])
 }
 
 
+vector<int> findZMatches(string S, int n, int m, vector<int> zVals)
+{
+    vector<int> matches;
+    
+    
+    
+    return matches;
+}
+
+vector<int> zPre(string P)
+{
+    int n = P.length;
+    vector<int> zVals(n);
+    
+    return zVals;
+}
+
+
+vector<int> simplestLinearMatch(string P, string T)
+{
+    vector<int> zVals = zPre(P);
+    
+    string S = P + "$" + T ;    // check that $ is not contained in P or T; if it is, choose another separator
+    
+    return findMatches(S, P.length, T.length, zVals);
+}
+
+
 
 vector<int> naiveMatch(string P_mult, string T_mult){
     vector<int> matches;
