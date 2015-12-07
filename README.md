@@ -1,13 +1,13 @@
 # ExactMatch
 Exact string matching algorithms for biological sequence applications
 
-Naive method
+*Naive method*
 
-Describe   <--------------
+
+# TODO: Describe   
 
 
 Time complexity
-
 
 O(nm) worst-case
 
@@ -23,3 +23,9 @@ Best-case - O(n): P = "bbb"
 28
 275
 
+* Simplest Linear Match*
+
+# TODO: Describe algorithm, sketch diagram
+
+* Boyer-Moore *
+# TODO: Describe algorithm
