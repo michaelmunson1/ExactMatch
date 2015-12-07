@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef ExactMatch_hpp
-#define ExactMatch_hpp
+#ifndef exact_match_hpp
+#define exact_match_hpp
 
 
 #include <string>
@@ -15,13 +15,13 @@
 
 using namespace std;
 
-vector<int> naiveMatch(string, string);
-vector<int> timeMatchingAlgo(vector<int> (*algo)(string,string), string, string);
-vector<int> simplestLinearMatch(string, string);
-vector<int> zPre(string P);
-void printTimes(vector<int>, int);
-void zPreProcessPatternBody(string, vector<int>&, int, int);
-vector<int> zProcessBody(bool, string, vector<int>& , int, int, int, int);
-vector<int> findZMatchesInTextBody(string, vector<int>&, int, int);
+vector<int> naive_match(string, string);
+vector<int> time_matching_algo(vector<int> (*algo)(string,string), string, string);
+vector<int> simplest_linear_match(string, string);
+vector<int> z_pre(string P);
+void print_times(vector<int>, int);
+void z_preprocess_pattern_body(string, vector<int>&, int, int);
+vector<int> z_process_body(bool, string, vector<int>& , int, int, int, int);
+vector<int> find_z_matches_in_text_body(string, vector<int>&, int, int);
 
-#endif /* ExactMatch_hpp */
+#endif /* exact_match_hpp */

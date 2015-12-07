@@ -11,7 +11,7 @@
 #include <vector>
 #include <cmath>
 #include <ctime>
-#include "ExactMatch.hpp"
+#include "exact_match.hpp"
 
 using namespace std;
 
@@ -22,8 +22,8 @@ int main(int argc, const char * argv[])
     const string P = "aba";
     const string T = "bbabaxababay";
     
-    vector<int> times = timeMatchingAlgo(simplestLinearMatch, P, T);
-    printTimes(times, 4);
+    vector<int> times = time_matching_algo(simplest_linear_match, P, T);
+    print_times(times, 4);
   
     return 0;
 }

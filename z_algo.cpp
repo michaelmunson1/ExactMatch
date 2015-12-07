@@ -1,6 +1,6 @@
 //
 //  z_algo.cpp
-//  ExactMatch
+//  exact_match
 //
 //  Created by Munson on 11/30/15.
 //  Copyright © 2015 Munson. All rights reserved.
@@ -10,30 +10,27 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "ExactMatch.hpp"
+#include "exact_match.hpp"
 
 using namespace std;
 
 
-
-
-vector<int> simplestLinearMatch(string P, string T)
+vector<int> simplest_linear_match(string P, string T)
 {
-    vector<int> zVals = zPre(P);
+    vector<int> zVals = z_pre(P);
     
     string S = P + "$" + T ;    // check that $ is not contained in P or T; if it is, choose another separator
     
-    return findZMatchesInTextBody(S, zVals, (int) P.length(), (int) T.length());
+    return find_z_matches_in_text_body(S, zVals, (int) P.length(), (int) T.length());
 }
 
 
-
-vector<int> zPre(string P)
+vector<int> z_pre(string P)
 {
     int n = (int) P.length();
     vector<int> zVals(n+2);
     
-    zPreProcessPatternBody(P, zVals, n, 0);
+    z_preprocess_pattern_body(P, zVals, n, 0);
     
     //for (int i=0; i<zVals.size(); ++i) cout<< zVals[i] << endl;
     
@@ -41,13 +38,13 @@ vector<int> zPre(string P)
 }
 
 
-void zPreProcessPatternBody(string P, vector<int>& zVals, int n, int m)
+void z_preprocess_pattern_body(string P, vector<int>& zVals, int n, int m)
 {
-    zProcessBody(true, P, zVals, n, m, 1, n);
+    z_process_body(true, P, zVals, n, m, 1, n);
 }
 
 
-vector<int> findZMatchesInTextBody(string S, vector<int>& zVals, int n, int m)
+vector<int> find_z_matches_in_text_body(string S, vector<int>& zVals, int n, int m)
 {
-    return zProcessBody(false, S, zVals, n, m, n+1, n+m+1);
+    return z_process_body(false, S, zVals, n, m, n+1, n+m+1);
 }
