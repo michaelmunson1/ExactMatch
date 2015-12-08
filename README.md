@@ -11,7 +11,7 @@ Time complexity
 
 O(nm) worst-case
 
-Timing: worst-case:  P = "aaa"   T = "aaaaaaaaa"; for 10^{1,2,3}  (minimum of 5 runs), t in ms
+Timing: worst-case:  P = "aaa"   T = "aaaaaaaaa" x 10^{1,2,3}  (take minimum time over 5 runs), t in ms
 
 81,
 7411,
