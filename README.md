@@ -1,4 +1,4 @@
-# ExactMatch
+# exact_match
 Exact string matching algorithms for biological sequence applications
 
 *Naive method*
