@@ -1,5 +1,5 @@
 //
-//  z_process_body.cpp
+//  z_process_body.cc
 //  exact_match
 //
 //  Created by Munson on 11/30/15.
@@ -9,10 +9,10 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "exact_match.hpp"
+#include "exact_match.h"
 
 
-vector<int> z_process_body(bool isPattern, string str, vector<int>& zVals, int n, int m, int begin, int end)
+vector<int> ZProcessBody(bool isPattern, string str, vector<int>& zVals, int n, int m, int begin, int end)
 {
     vector<int> matches;
     

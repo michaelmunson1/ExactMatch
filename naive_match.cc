@@ -1,5 +1,5 @@
 //
-//  naive_match.cpp
+//  naive_match.cc
 //  exact_match
 //
 //  Created by Munson on 11/30/15.
@@ -8,9 +8,9 @@
 
 #include <iostream>
 #include <vector>
-#include "exact_match.hpp"
+#include "exact_match.h"
 
-vector<int> naive_match(string P_mult, string T_mult){
+vector<int> NaiveMatch(string P_mult, string T_mult){
     vector<int> matches;
     
     for (int i=0; i <= T_mult.length() - P_mult.length(); ++i)

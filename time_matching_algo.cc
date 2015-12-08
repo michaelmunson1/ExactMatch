@@ -1,5 +1,5 @@
 //
-//  time_matching_algo.cpp
+//  time_matching_algo.cc
 //  exact_match
 //
 //  Created by Munson on 11/30/15.
@@ -14,7 +14,7 @@
 using namespace std;
 
 
-vector<int> time_matching_algo(vector<int> (*algo)(string, string), string P, string T){
+vector<int> TimeMatchingAlgo(vector<int> (*algo)(string, string), string P, string T){
     
     vector<int> times {0,0,0,0};
     
@@ -59,7 +59,7 @@ vector<int> time_matching_algo(vector<int> (*algo)(string, string), string P, st
 }
 
 
-void print_times(vector<int> times, int n){
+void PrintTimes(vector<int> times, int n){
     cout << "Times:" << endl;
     for(int i = 0; i < n; ++i){
         cout << times[i] << endl;
