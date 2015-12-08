@@ -25,7 +25,7 @@ Best-case - O(n): P = "bbb"
 
 # Simplest Linear Match
 
-TODO: Describe algorithm, sketch diagram
+TODO: Describe Z algorithm for fundamental preprocessing, and its application in the simplest linear time matching algorithm; sketch diagram to illustrate the method and describe the variables used.
 
 # Boyer-Moore
 TODO: Describe algorithm
