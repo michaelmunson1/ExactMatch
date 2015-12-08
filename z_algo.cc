@@ -2,8 +2,7 @@
 //  z_algo.cc
 //  exact_match
 //
-//  Created by Munson on 11/30/15.
-//  Copyright © 2015 Munson. All rights reserved.
+//  Created by Michael Munson on 11/30/15.
 //
 
 
@@ -15,7 +14,7 @@
 using namespace std;
 
 
-vector<int> SimplestLinearMatch(string P, string T)
+vector<int> SimplestLinearMatch(const string P, const string T)
 {
     vector<int> zVals = ZPre(P);
     
@@ -25,7 +24,7 @@ vector<int> SimplestLinearMatch(string P, string T)
 }
 
 
-vector<int> ZPre(string P)
+vector<int> ZPre(const string P)
 {
     int n = (int) P.length();
     vector<int> zVals(n+2);
@@ -38,13 +37,13 @@ vector<int> ZPre(string P)
 }
 
 
-void ZPreprocessPatternBody(string P, vector<int>& zVals, int n, int m)
+void ZPreprocessPatternBody(const string P, vector<int>& zVals, int n, int m)
 {
     ZProcessBody(true, P, zVals, n, m, 1, n);
 }
 
 
-vector<int> FindZMatchesInTextBody(string S, vector<int>& zVals, int n, int m)
+vector<int> FindZMatchesInTextBody(const string S, vector<int>& zVals, int n, int m)
 {
-    return z_process_body(false, S, zVals, n, m, n+1, n+m+1);
+    return ZProcessBody(false, S, zVals, n, m, n+1, n+m+1);
 }

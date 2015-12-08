@@ -2,8 +2,7 @@
 //  z_process_body.cc
 //  exact_match
 //
-//  Created by Munson on 11/30/15.
-//  Copyright © 2015 Munson. All rights reserved.
+//  Created by Michael Munson on 11/30/15.
 //
 
 #include <iostream>
@@ -12,17 +11,17 @@
 #include "exact_match.h"
 
 
-vector<int> ZProcessBody(bool isPattern, string str, vector<int>& zVals, int n, int m, int begin, int end)
+vector<int> ZProcessBody(bool isPattern, const string str, vector<int>& zVals, int n, int m, int begin, int end)
 {
     vector<int> matches;
     
     int l = zVals[n];
     int r = zVals[n+1];
-    int j = 0;
+    int j = 0;                           
     
     
-    // iterate over pattern or text
-    for (int k=begin; k < end; ++k)
+    
+    for (int k=begin; k < end; ++k)               // iterate over pattern or text
     {
         bool isMatch = true;
         if(k > r)
@@ -30,12 +29,12 @@ vector<int> ZProcessBody(bool isPattern, string str, vector<int>& zVals, int n, 
             // compare to prefix of str
             for (int i=k; isMatch && i < end; ++i)
             {
-                if (str[i] != str[i-k]) {     // mismatch occurs
+                if (str[i] != str[i-k]) {        // mismatch occurs
                     j = i;
                     isMatch = false;
                 }
             }
-            if (isMatch)             // no mismatch found, to end of str
+            if (isMatch)                        // no mismatch found, to end of str
             {
                 l=k;
                 r=end-1;
@@ -115,7 +114,7 @@ vector<int> ZProcessBody(bool isPattern, string str, vector<int>& zVals, int n, 
             {
                 int zVal = zVals[k_prime];
                 
-                if (isPattern)  zVals[k] = zVals[k_prime];   // l and r unchanged
+                if (isPattern)  zVals[k] = zVals[k_prime];         // l and r unchanged
                 else if(zVal == n) matches.push_back(k-n-1);
             }
             

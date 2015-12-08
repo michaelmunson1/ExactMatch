@@ -2,8 +2,7 @@
 //  time_matching_algo.cc
 //  exact_match
 //
-//  Created by Munson on 11/30/15.
-//  Copyright © 2015 Munson. All rights reserved.
+//  Created by Michael Munson on 11/30/15.
 //
 
 #include <iostream>
@@ -14,54 +13,55 @@
 using namespace std;
 
 
-vector<int> TimeMatchingAlgo(vector<int> (*algo)(string, string), string P, string T){
+vector<int> TimeMatchingAlgo(vector<int> (*algo)(const string, const string), const string P, const string T){
     
     vector<int> times {0,0,0,0};
     
     for(int i=0; i < 4; ++i){
         
-        //cout << "i is " << i << endl;
-        int inSize = (int) pow(10.0, (double) i);
+        int num_text_repeats = (int) pow(10.0, (double) i);
         
-        string P_mult = "";     // for time tests of input size
-        string T_mult = "";
+        string T_repeated = "";
         
-        for (int k=0; k< inSize; ++k)
+        for (int k=0; k< num_text_repeats; ++k)
         {
-            //P_mult += P;
-            T_mult += T;
+            T_repeated += T;                     // create longer text string for timing
         }
         
-        double minTime = 9999999.9;
-        for (int j=0; j < 5; ++j){
+        double min_time = 9999999.9;             // find fastest of several runs, to give best indication of algorithm performance
+        
+        int num_times_to_run = 5;
+        
+        for (int j=0; j < num_times_to_run; ++j){      //run algorithm multiple times
             //cout << "j is " << j << endl;
             
-            clock_t startTime = clock();
+            clock_t start_time = clock();        // time is measured in clock ticks, later converted to seconds
             
-            vector<int> matches = (*algo)(P,T_mult);
+            vector<int> match_indices = (*algo)(P,T_repeated);   // find all occurrences of P in T_repeated
             
-            // Print matches
+            // Print match_indices
             
-            if (i == 0 && j==0) {
+            auto time_in_seconds = (double) (clock() - start_time ) /  CLOCKS_PER_SEC;
+            auto this_time = (int) 1000000 * time_in_seconds;                  //in microseconds
+            if (this_time < min_time)  min_time = this_time;
+            
+            if (i == 0 && j==0) {                 // print the occurrences of P in T
                 
-                cout << "# of matches is " << matches.size() << endl;
-                for (int i=0; i < matches.size(); ++i)  cout << matches[i] << endl;
+                cout << "# of match_indices is " << match_indices.size() << endl;
+                for (int i=0; i < match_indices.size(); ++i)  cout << match_indices[i] << endl;
                 cout << "**********" << endl;
             }
             
-            auto s = (double) (clock() - startTime ) /  CLOCKS_PER_SEC; // time in seconds
-            auto thisTime = (int) 1000000 * s;   //time in us
-            if (thisTime < minTime)  minTime = thisTime;
         }
-        times[i] = minTime;
+        times[i] = min_time;
     }
     return times;
 }
 
 
-void PrintTimes(vector<int> times, int n){
+void PrintTimes(vector<int> times, int num_times){
     cout << "Times:" << endl;
-    for(int i = 0; i < n; ++i){
+    for(int i = 0; i < num_times; ++i){
         cout << times[i] << endl;
     }
 }
