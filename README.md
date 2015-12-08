@@ -1,7 +1,7 @@
 # ExactMatch
 Exact string matching algorithms for biological sequence applications
 
-*Naive method*
+#Naive method
 
 
 TODO: Describe   
