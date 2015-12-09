@@ -11,38 +11,39 @@
 #include "exact_match.h"
 
 
-vector<int> ZProcessBody(bool isPattern, const string str, vector<int>& zVals, int n, int m, int begin, int end)
+
+vector<int> ZProcessBody(bool is_pattern, const string str, vector<int>& z_vals, int n, int m, int begin, int end)
 {
     vector<int> matches;
     
-    int l = zVals[n];
-    int r = zVals[n+1];
-    int j = 0;                           
+    int l = z_vals[n];
+    int r = z_vals[n+1];
+    int j = 0;
     
     
     
     for (int k=begin; k < end; ++k)               // iterate over pattern or text
     {
-        bool isMatch = true;
+        bool is_match = true;
         if(k > r)
         {
             // compare to prefix of str
-            for (int i=k; isMatch && i < end; ++i)
+            for (int i=k; is_match && i < end; ++i)
             {
-                if (str[i] != str[i-k]) {        // mismatch occurs
+                if (str[i] != str[i-k]) {        // mis_match occurs
                     j = i;
-                    isMatch = false;
+                    is_match = false;
                 }
             }
-            if (isMatch)                        // no mismatch found, to end of str
+            if (is_match)                        // no mis_match found, to end of str
             {
                 l=k;
                 r=end-1;
-                if (isPattern)
+                if (is_pattern)
                 {
-                    zVals[k] = n - k;
+                    z_vals[k] = n - k;
                 }
-                if (! isPattern)
+                if (! is_pattern)
                 {
                     int zVal = n+m+1-k;
                     if (zVal == n)  matches.push_back(k-n-1);   // match found between P and substring of T
@@ -52,7 +53,7 @@ vector<int> ZProcessBody(bool isPattern, const string str, vector<int>& zVals, i
             {
                 int zVal = j - k;
                 
-                if (isPattern)  zVals[k] = zVal;
+                if (is_pattern)  z_vals[k] = zVal;
                 
                 if (zVal > 0)
                 {
@@ -68,28 +69,28 @@ vector<int> ZProcessBody(bool isPattern, const string str, vector<int>& zVals, i
             int beta_length = r - k + 1;
             int j = 0;
             
-            if (zVals[k_prime] >= beta_length)
+            if (z_vals[k_prime] >= beta_length)
             {
-                isMatch = true;
+                is_match = true;
                 //int r_prime = k_prime + beta_length - 1;
-                for (int i= r + 1; isMatch && i < end; ++i){
+                for (int i= r + 1; is_match && i < end; ++i){
                     if (str[i] != str[i - k]){
                         j = i;
-                        isMatch = false;
+                        is_match = false;
                     }
                 }
                 
                 
-                if (isMatch)
+                if (is_match)
                 {
                     l = k;
                     r = end-1;
                     
-                    if (isPattern)
+                    if (is_pattern)
                     {
-                        zVals[k] = n - k;
+                        z_vals[k] = n - k;
                     }
-                    if (! isPattern)
+                    if (! is_pattern)
                     {
                         int zVal = n+m+1-k;
                         if (zVal == n)  matches.push_back(k-n-1);
@@ -100,7 +101,7 @@ vector<int> ZProcessBody(bool isPattern, const string str, vector<int>& zVals, i
                 {
                     int zVal = j - k;
                     
-                    if (isPattern)  zVals[k] = zVal;
+                    if (is_pattern)  z_vals[k] = zVal;
                     if (zVal == n) matches.push_back(k-n-1);
                     
                     if(j > r+1)
@@ -112,17 +113,17 @@ vector<int> ZProcessBody(bool isPattern, const string str, vector<int>& zVals, i
             }
             else
             {
-                int zVal = zVals[k_prime];
+                int zVal = z_vals[k_prime];
                 
-                if (isPattern)  zVals[k] = zVals[k_prime];         // l and r unchanged
+                if (is_pattern)  z_vals[k] = z_vals[k_prime];         // l and r unchanged
                 else if(zVal == n) matches.push_back(k-n-1);
             }
             
         }
     }
     
-    zVals[n] = l;
-    zVals[n+1] = r;
+    z_vals[n] = l;
+    z_vals[n+1] = r;
     
     return matches;
 }
