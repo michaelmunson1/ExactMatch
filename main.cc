@@ -19,10 +19,10 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    const string P = "aba";
-    const string T = "bbabaxababay";
+    const string pattern = "aba";
+    const string text = "bbabaxababay";
     
-    vector<int> times = TimeMatchingAlgo(SimplestLinearMatch, P, T);
+    vector<int> times = TimeMatchingAlgo(SimplestLinearMatch, pattern, text);
     PrintTimes(times, 4);
   
     return 0;

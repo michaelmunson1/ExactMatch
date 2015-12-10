@@ -23,9 +23,10 @@ using namespace std;
 
 // Example:
 //
-// const string P = "aba";
-// const string T = "bbabaxababay";
-// vector<int> match_indices = NaiveMatch(P, T);
+// const string pattern = "aba";
+// const string text = "bbabaxababay";
+// vector<int> match_indices = NaiveMatch(pattern, text);
+
 
 vector<int> NaiveMatch(const string, const string);
 
@@ -37,10 +38,11 @@ vector<int> NaiveMatch(const string, const string);
 //
 // Example:
 //
-// const string P = "aba";
-// const string T = "bbabaxababay";
-// vector<int> times = TimeMatchingAlgo(SimplestLinearMatch, P, T);
+// const string pattern = "aba";
+// const string text = "bbabaxababay";
+// vector<int> times = TimeMatchingAlgo(SimplestLinearMatch, pattern, text);
 // PrintTimes(times, 4);
+
 
 vector<int> TimeMatchingAlgo(vector<int> (*algo)(string,string), const string, const string);
 
@@ -52,6 +54,7 @@ vector<int> TimeMatchingAlgo(vector<int> (*algo)(string,string), const string, c
 // vector<int> times = TimeMatchingAlgo(SimplestLinearMatch, pattern_string, text_string);
 // PrintTimes(times, 4);
 
+
 void PrintTimes(vector<int>, int);
 
 
@@ -60,21 +63,53 @@ void PrintTimes(vector<int>, int);
 //
 // Example:
 //
-// const string P = "aba";
-// const string T = "bbabaxababay";
+// const string pattern = "aba";
+// const string text = "bbabaxababay";
 //
-// vector<int> match_indices = SimplestLinearMatch(P, T);
+// vector<int> match_indices = SimplestLinearMatch(pattern, text);
 
 
 vector<int> SimplestLinearMatch(const string, const string);
 
 
+// Accepts a pattern string and text string and returns a separator
+// character not contained in either
+// Example:
+//
+// const string pattern = "aba";
+// const string text = "bbabaxababay";
+// char separator = choose_separator(pattern,text);
+// cout << separator << endl;   //  $
 
-vector<int> ZPreprocess(const string P);
 
-void ZPreprocessPatternBody(const string, vector<int>&, int);
+char choose_separator(const string, const string);
+
+
+// Implements 'fundamental preprocessing' of the pattern string 'P', according to
+// the 'fundamental preprocessing' algorithm (or 'Z algorithm') described in
+// section 1.4 of 'Algorithms on Strings, Trees, and Sequences:
+// Computer Science and Computational Biology' by Gusfield.  The bulk of the
+// processing is done in the subroutine 'ZProcessBody'.
+// (for more, see function definition in 'z_algo.cc')
+//
+// Example:
+//
+// const string pattern = "abxyabxz";
+// vector<int> z_vals = ZPreprocess(const string pattern);  // z_vals = [0,0,0,0,3,0,0,0]
+
+
+vector<int> ZPreprocess(const string pattern);
+
+
+// Subroutine called by ZPreprocess and FindZMatchesInTextBody; the heart of both.
+
 
 vector<int> ZProcessBody(bool, const string, vector<int>& , int, int, int, int);
+
+
+// Implements Z algorithm on the text, seeking occurrences of the pattern
+// and shifting according to the results of preprocessing on the pattern
+
 
 vector<int> FindZMatchesInTextBody(const string, vector<int>&, int, int);
 

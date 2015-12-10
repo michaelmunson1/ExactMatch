@@ -8,15 +8,15 @@
 #include <vector>
 #include "exact_match.h"
 
-vector<int> NaiveMatch(const string P, const string T){
+vector<int> NaiveMatch(const string pattern, const string text){
     vector<int> matches;
     
-    for (int i=0; i <= T.length() - P.length(); ++i)
+    for (int i=0; i <= text.length() - pattern.length(); ++i)
     {
-        for(int j=0; j < P.length(); ++j)
+        for(int j=0; j < pattern.length(); ++j)
         {
-            if (P[j] != T[i+j]) break;
-            else if (j == P.length() - 1) matches.push_back(i);
+            if (pattern[j] != text[i+j]) break;
+            else if (j == pattern.length() - 1) matches.push_back(i);
         }
     }
     return matches;

@@ -18,10 +18,10 @@ using namespace std;
 // string repeated 1,10,100, and 1000 times.  For each input size, 'algo' is run
 // num_times_to_run (5 suggested), and the fastest time is recorded.
 //
-// Currently prints the indices of occurrences of P in T, for the first run with
+// Currently prints the indices of occurrences of pattern in T, for the first run with
 // num_text_repeats = 1.
 
-vector<int> TimeMatchingAlgo(vector<int> (*algo)(const string, const string), const string P, const string T){
+vector<int> TimeMatchingAlgo(vector<int> (*algo)(const string, const string), const string pattern, const string text){
     
     vector<int> times {0,0,0,0};
     
@@ -47,7 +47,7 @@ vector<int> TimeMatchingAlgo(vector<int> (*algo)(const string, const string), co
             clock_t start_time = clock();             // time is measured in clock ticks, later
                                                       //converted to microseconds
             
-            vector<int> match_indices = (*algo)(P,T_repeated);   // find all occurrences of P in T_repeated
+            vector<int> match_indices = (*algo)(pattern,T_repeated);   // find all occurrences of pattern in T_repeated
             
             // Print match_indices
             
@@ -56,7 +56,7 @@ vector<int> TimeMatchingAlgo(vector<int> (*algo)(const string, const string), co
             if (this_time < min_time)  min_time = this_time;
             
             if (i == 0 && j==0) {                         // for first run w/ num_text_repeats = 1,
-                                                          // print the occurrences of P in T
+                                                          // print the occurrences of pattern in T
                 
                 cout << "# of match_indices is " << match_indices.size() << endl;
                 for (int i=0; i < match_indices.size(); ++i)  cout << match_indices[i] << endl;
