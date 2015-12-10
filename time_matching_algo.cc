@@ -29,11 +29,11 @@ vector<int> TimeMatchingAlgo(vector<int> (*algo)(const string, const string), co
         
         int num_text_repeats = (int) pow(10.0, (double) i);  // 1, 10, 100, 1000 for i in {0,...,3}
         
-        string T_repeated = "";
+        string text_repeated = "";
         
         for (int k=0; k< num_text_repeats; ++k)
         {
-            T_repeated += T;                     // create longer text string for timing
+            text_repeated += text;                     // create longer text string for timing
         }
         
         double min_time = 9999999.9;             // find fastest of several runs, to give best
@@ -47,7 +47,7 @@ vector<int> TimeMatchingAlgo(vector<int> (*algo)(const string, const string), co
             clock_t start_time = clock();             // time is measured in clock ticks, later
                                                       //converted to microseconds
             
-            vector<int> match_indices = (*algo)(pattern,T_repeated);   // find all occurrences of pattern in T_repeated
+            vector<int> match_indices = (*algo)(pattern,text_repeated);   // find all occurrences of pattern in text_repeated
             
             // Print match_indices
             
